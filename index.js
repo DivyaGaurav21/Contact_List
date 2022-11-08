@@ -1,11 +1,19 @@
 const express = require('express');
+const path = require('path');
 const port = 8000;
+
+const viewPath = path.join(__dirname , 'viewFolder');
 
 const app = express();
 
 
+//for setting ejs templet engine
+app.set('view engine' , 'ejs');
+app.set('views' , viewPath);
+
 app.get('/' , (req , res) => {
-    res.send('cool @ it is running');
+    // console.log(req)
+   return res.render('home' , {title : "my contactList"});
 })
 
 app.listen(port , (err) => {
