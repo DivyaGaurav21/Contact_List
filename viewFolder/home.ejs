@@ -1,14 +1,43 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Changa&family=Hind+Siliguri&family=Orbitron:wght@400;500;600&family=Poppins:ital,wght@0,300;0,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/74894dafb2.js" crossorigin="anonymous"></script>
     <title>
         <%= title %>
     </title>
 </head>
 <body>
-    <h1>rendering from updated ejs</h1>
+    <h1 id="page-heading">STATIC/DYNAMIC PAGE RENDER THROUGH NODE.JS(Contact_List mini_Project)</h1>
+    <div class="contact-content">
+        <div>
+             <ul id="list">
+                  <% for(let i of contact_list){%>
+                     <div class="single_contact">
+                    <p id="c_name"><i class="fa-solid fa-id-badge"></i>&nbsp<%= i.name %></p>    
+                    <p><i class="fa-solid fa-phone">&nbsp;</i><%= i.phone %></p>
+                    <div class="delete_contact">
+                     <a href="/delete_contact/?id=<%= i._id %>">
+                     <!-- <a href="/delete_contact/<%= i.phone %>"> -->
+                         <i class="fa-solid fa-trash"></i>
+                     </a>
+                 </div> 
+                 </div>   
+                <%}%>
+            </ul>
+        </div>
+        <div id="form_container">
+            <h2 id="contact"><i class="fa-solid fa-address-book">&nbsp;</i>Contact List</h2>
+           <form action="create-contact" method="POST">
+             <input class="ip" type="text" name="name" placeholder="Enter_Name*" required>
+             <input  class="ip" type="number" name="phone" placeholder="Enter_Mob_No*" required>
+             <button id="btn" type="submit">Add Contact</button>
+          </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/home.js"></script>
 </body>
 </html>

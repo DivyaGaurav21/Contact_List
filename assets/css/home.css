@@ -1,0 +1,109 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #f6ecc4;
+ background-image: linear-gradient(315deg, #f6ecc4 0%, #f7d4d4 74%);
+ }
+ #page-heading{
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #ff00ff;
+  font-size: 25px;
+ }
+
+ #contact{
+     color: rgb(46, 46, 241);
+     font-size: 2rem;
+ }
+
+
+ .contact-content{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+ }
+
+
+
+ .ip{
+     background-color: #6a7cb8;
+     background-image: linear-gradient(178deg, #94a7e6 0%, #dbe7fc 84%);
+  width: 350px;
+  display:block;
+  margin-bottom: 10px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  font-size: 25px;
+  border: 1px solid  #1d2951;
+  padding-left: 20px;
+ }
+ *:focus {
+     outline: none;
+ }
+
+ #btn{
+   position: relative;
+   left: 70px;
+   width: 200px;
+   height: 40px;
+   margin-top: 15px;
+   font-size: 20px;
+   border: 1px solid rgb(255, 0, 0);
+   border-radius: 20px;
+   background-color: rgba(119, 243, 233, 0.575);
+   color: red;
+ }
+ #list{
+     background-color: #ee8df1;
+ background-image: linear-gradient(315deg, #e9a78b 0%, #eedb95 74%);
+     width: 280px;
+     position: relative;
+     height: 510px;
+     overflow-y: scroll;
+     border-radius: 30px;
+     border: 10px solid rgb(119, 97, 91);
+ }
+ #list p{
+     font-size: 15px;
+ }
+ #list::-webkit-scrollbar {
+     display: none;
+   }
+   #c_name{
+     font-family: 'Poppins', sans-serif;
+   }
+   
+   .single_contact{
+     background-color: #f55718;
+     padding-left: 40px;
+     width: 267px;
+     position: relative;
+     left: -33px;
+     color: #fff;
+     border-radius: 10px;
+   }
+
+   .delete_contact{
+     position: absolute;
+     right: 8px;
+     top:19px
+   }
+   /* for making contact list responsive  */
+
+  @media screen and (max-width: 750px){
+   .contact-content{
+    display: flex;
+    flex-direction: column;
+   }
+   body::-webkit-scrollbar {
+    display: none;
+  }
+  #page-heading{
+    color: #f55718;
+  }
+
+  } 
