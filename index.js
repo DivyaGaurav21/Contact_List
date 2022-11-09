@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const port = 8000;
 
+const db = require('./config/mongoose');
+const Contact = require('./models/contact');
+
 const viewPath = path.join(__dirname, 'viewFolder');
 
 const app = express();
@@ -35,26 +38,45 @@ var contactList = [
 
 app.get('/', (req, res) => {
     // console.log(req)
-    return res.render('home', {
-        title: "my contactList" , 
-        contact_list : contactList
-    });
+    Contact.find({}, (err, contactListDB) => {
+        //here empty object {} for quiry in db
+        if (err) {
+            console.log('error in fetching contact from DB')
+            return;
+        } else {
+            return res.render('home', {
+                title: "my contactList",
+                contact_list: contactListDB
+            });
+        }
+    })
 })
 app.post('/create-contact', (req, res) => {
     // console.log(req.body)
-    contactList.push(req.body);
-    return res.redirect('/');
+    Contact.create({
+        name: req.body.name,
+        phone: req.body.phone
+    }, (err, newContact) => {
+        if (err) {
+            console.log('Error in creating contacts');
+            return;
+        } else {
+            console.log('##########******', newContact);
+            res.redirect('back');
+        }
+    })
 
 })
 
 //for delete contact routing
-app.get('/delete-contact' , (req , res) => {
+app.get('/delete-contact', (req, res) => {
     // console.log(req.query);
+    //get query from requested url
     let phon_no = req.query.phone;
 
     let contactIndex = contactList.findIndex(contact => contact.phone == phon_no);
 
-    if(contactIndex != -1){
+    if (contactIndex != -1) {
         contactList.splice(contactIndex, 1);
     }
     return res.redirect('back');
