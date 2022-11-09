@@ -61,7 +61,7 @@ app.post('/create-contact', (req, res) => {
             console.log('Error in creating contacts');
             return;
         } else {
-            console.log('##########******', newContact);
+            // console.log('##########******', newContact);
             res.redirect('back');
         }
     })
@@ -70,16 +70,18 @@ app.post('/create-contact', (req, res) => {
 
 //for delete contact routing
 app.get('/delete-contact', (req, res) => {
-    // console.log(req.query);
-    //get query from requested url
-    let phon_no = req.query.phone;
+ //get the id from query in ul
+    let id = req.query.id;
+   //find the contact using id and delete
+    Contact.findByIdAndDelete(id , (err) => {
+      if(err){
+        console.log('Error in Deleting contact from DB');
+        return;
+      }else{
+        return res.redirect('back');
+      }
+    })
 
-    let contactIndex = contactList.findIndex(contact => contact.phone == phon_no);
-
-    if (contactIndex != -1) {
-        contactList.splice(contactIndex, 1);
-    }
-    return res.redirect('back');
 })
 
 app.listen(port, (err) => {
