@@ -47,6 +47,19 @@ app.post('/create-contact', (req, res) => {
 
 })
 
+//for delete contact routing
+app.get('/delete-contact' , (req , res) => {
+    // console.log(req.query);
+    let phon_no = req.query.phone;
+
+    let contactIndex = contactList.findIndex(contact => contact.phone == phon_no);
+
+    if(contactIndex != -1){
+        contactList.splice(contactIndex, 1);
+    }
+    return res.redirect('back');
+})
+
 app.listen(port, (err) => {
     if (err) {
         console.log('Error !! is running on server')
